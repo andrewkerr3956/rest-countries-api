@@ -1,0 +1,16 @@
+.searchWrapper {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    width: 100%;
+    max-width: 400px;
+    height: 50px;
+    font-size: 14px;
+}
+
+.searchInput {
+    display: block;
+    flex: 1;
+    height: 100%;
+    border: unset;
+}
