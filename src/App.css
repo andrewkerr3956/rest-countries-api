@@ -65,3 +65,8 @@
   max-width: 1690px;
   margin: 0 auto;
 }
+
+.countriesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
