@@ -3,3 +3,7 @@
     width: 100%;
     border-radius: 4px;
 }
+
+.countryCardDetails {
+    background-color: hsl(0, 100%, 100%);
+}

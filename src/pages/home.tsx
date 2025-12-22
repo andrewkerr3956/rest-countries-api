@@ -9,7 +9,7 @@ export default function HomePage() {
     const [countriesData, setCountriesData] = useState([]);
 
     const handleFetchCountries = async () => {
-        return fetch('https://restcountries.com/v3.1/all?fields=capital,flag,name,population,region').then(resp => resp.json());
+        return fetch('https://restcountries.com/v3.1/all?fields=capital,flag,flags,name,population,region').then(resp => resp.json());
     }
 
     useEffect(() => {
@@ -43,7 +43,8 @@ export default function HomePage() {
                             region={c?.region}
                             capital={c?.capital?.[0]}
                             population={c?.population}
-                            flag={c?.flag}
+                            flag={c?.flags?.png}
+                            className="countriesGridItem"
                         />
                     )) : null}
                 </div>

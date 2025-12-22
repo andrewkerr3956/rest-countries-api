@@ -63,10 +63,26 @@
 .container {
   width: 100%;
   max-width: 1690px;
+  overflow-x: hidden;
   margin: 0 auto;
 }
 
 .countriesGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  grid-template-columns: repeat(4, calc(25% - 1.5%));
+  column-gap: 3%;
+  row-gap: 100px;
+  background-color: red;
+  justify-content: center;
+  align-content: center;
+}
+
+.countriesGridItem {
+  display: block;
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  margin: unset;
+  padding: unset;
 }
