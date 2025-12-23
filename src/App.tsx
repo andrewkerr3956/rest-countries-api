@@ -8,6 +8,7 @@ import Filter from './components/ui/Filter/Filter'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/home'
 import ThemeContext from './contexts/ThemeContext'
+import CountryDetailsPage from './pages/countries/:countryCode'
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -21,13 +22,18 @@ function App() {
     setTheme(mode)
   }, []);
 
+  const handleChangeTheme = (theme: string) => {
+    setTheme(theme);
+  }
+
   return (
     <BrowserRouter>
       <ThemeContext.Provider value={theme}>
         <div className={`wrapper ${theme === 'dark' && 'dark'}`}>
-          <Header />
+          <Header theme={theme} onThemeChange={handleChangeTheme} />
           <main className='container' style={{ paddingBlock: 20 }}>
             <Routes>
+              <Route path='/countries/:countryCode' element={<CountryDetailsPage />} />
               <Route path='/' element={<HomePage />} />
               <Route path='*' element={<div>ERROR!</div>} />
             </Routes>

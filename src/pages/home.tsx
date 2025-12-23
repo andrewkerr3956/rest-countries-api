@@ -2,6 +2,7 @@ import { Suspense, use, useEffect, useRef, useState } from "react";
 import Filter from "../components/ui/Filter/Filter";
 import SearchInput from "../components/ui/SearchInput/SearchInput";
 import CountryCard from "../components/ui/CountryCard/CountryCard";
+import { Link } from "react-router";
 
 export default function HomePage() {
     const initialCountriesData = useRef([]);
@@ -9,7 +10,7 @@ export default function HomePage() {
     const [countriesData, setCountriesData] = useState([]);
 
     const handleFetchCountries = async () => {
-        return fetch('https://restcountries.com/v3.1/all?fields=capital,flag,flags,name,population,region').then(resp => resp.json());
+        return fetch('https://restcountries.com/v3.1/all?fields=capital,flag,flags,name,population,region,cca3').then(resp => resp.json());
     }
 
     useEffect(() => {
@@ -37,15 +38,17 @@ export default function HomePage() {
             <Suspense>
                 <div className="countriesGrid">
                     {countriesData && countriesData?.length > 0 ? countriesData.map((c) => (
-                        <CountryCard 
-                            key={c?.name?.official}
-                            country={c?.name?.official}
-                            region={c?.region}
-                            capital={c?.capital?.[0]}
-                            population={c?.population}
-                            flag={c?.flags?.png}
-                            className="countriesGridItem"
-                        />
+                        <Link to={`/countries/${c?.cca3}`}>
+                            <CountryCard
+                                key={c?.name?.official}
+                                country={c?.name?.common}
+                                region={c?.region}
+                                capital={c?.capital?.[0]}
+                                population={c?.population}
+                                flag={c?.flags?.png}
+                                className="countriesGridItem"
+                            />
+                        </Link>
                     )) : null}
                 </div>
             </Suspense>
