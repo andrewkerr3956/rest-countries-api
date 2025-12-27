@@ -4,27 +4,44 @@ import SearchInput from "../components/ui/SearchInput/SearchInput";
 import CountryCard from "../components/ui/CountryCard/CountryCard";
 import { Link } from "react-router";
 
+async function handleFetchCountries() {
+    return fetch('https://restcountries.com/v3.1/all?fields=capital,flag,flags,name,population,region,cca3').then(resp => resp.json());
+};
+
 const HomePage = () => {
     const initialCountriesData = useRef([]);
 
     const [countriesData, setCountriesData] = useState([]);
-
-    const handleFetchCountries = async () => {
-        return fetch('https://restcountries.com/v3.1/all?fields=capital,flag,flags,name,population,region,cca3').then(resp => resp.json());
-    }
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filterQuery, setFilterQuery] = useState(null);
 
     useEffect(() => {
         (async () => {
             const data = await handleFetchCountries();
-            console.log(data)
-            setCountriesData(data)
+            console.log(data);
+            console.log(searchQuery)
+            let searchFilter = [...data];
+            let regionFilter = [...data];
+            // Apply filters
+            if(searchQuery) {
+                searchFilter = data.filter((d) => d?.name?.common?.includes(searchQuery));
+            }
+            if(filterQuery) {
+                regionFilter = data.filter((d) => d?.includes('***'));
+            }
+            console.log(searchFilter)
+            console.log(regionFilter)
+            const filteredData = data.filter((d) => searchFilter?.includes(d) && regionFilter?.includes(d))
+            setCountriesData(filteredData);
         })();
-    }, []);
+    }, [searchQuery, filterQuery]);
 
     return (
         <div>
             <SearchInput
                 placeholder='Search for a country...'
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)} 
             />
             <Filter
                 options={[
