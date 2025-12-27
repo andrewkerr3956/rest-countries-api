@@ -86,3 +86,23 @@
   margin: unset;
   padding: unset;
 }
+
+.countryDetailTitle {
+  text-align: left;
+}
+
+.countryDetailItem {
+  text-align: left;
+}
+
+.countryDetailLabel {
+  font-weight: 500;
+}
+
+.wrapper.dark .countryDetailTitle {
+  color: #FFFFFF;
+}
+
+.wrapper.dark .countryDetailItem {
+  color: #FFFFFF;
+}

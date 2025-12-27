@@ -1,4 +1,4 @@
-import { Suspense, use, useEffect, useRef, useState } from "react";
+import { Suspense, use, useEffect, useMemo, useRef, useState } from "react";
 import Filter from "../components/ui/Filter/Filter";
 import SearchInput from "../components/ui/SearchInput/SearchInput";
 import CountryCard from "../components/ui/CountryCard/CountryCard";
@@ -9,48 +9,72 @@ async function handleFetchCountries() {
 };
 
 const HomePage = () => {
-    const initialCountriesData = useRef([]);
+    const initialLoad = useRef(true);
+    const initialCountriesData = useRef<any[]>([]);
 
     const [countriesData, setCountriesData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filterQuery, setFilterQuery] = useState(null);
 
+    useMemo(() => {
+        (async () => {
+            const data = [...initialCountriesData.current];
+            console.log({ initialRef: data });
+            if (!initialLoad.current) {
+                let searchFilter = [...data];
+                let regionFilter = [...data];
+                // Apply filters
+                if (searchQuery) {
+                    searchFilter = data.filter((d) => d?.name?.common?.includes(searchQuery));
+                }
+                if (filterQuery) {
+                    regionFilter = data.filter((d) => d?.region?.toLowerCase()?.includes(filterQuery));
+                }
+                const filteredData = data.filter((d) => searchFilter?.includes(d) && regionFilter?.includes(d))
+                setCountriesData(filteredData);
+            }
+        })();
+    }, [searchQuery, filterQuery]);
+
     useEffect(() => {
         (async () => {
             const data = await handleFetchCountries();
-            console.log(data);
-            console.log(searchQuery)
+            if (initialLoad?.current) {
+                initialCountriesData.current = [...data];
+            }
             let searchFilter = [...data];
             let regionFilter = [...data];
             // Apply filters
-            if(searchQuery) {
+            if (searchQuery) {
                 searchFilter = data.filter((d) => d?.name?.common?.includes(searchQuery));
             }
-            if(filterQuery) {
-                regionFilter = data.filter((d) => d?.includes('***'));
+            if (filterQuery) {
+                regionFilter = data.filter((d) => d?.region?.toLowerCase()?.includes(filterQuery));
             }
-            console.log(searchFilter)
-            console.log(regionFilter)
             const filteredData = data.filter((d) => searchFilter?.includes(d) && regionFilter?.includes(d))
             setCountriesData(filteredData);
+            initialLoad.current = false;
         })();
-    }, [searchQuery, filterQuery]);
+    }, []);
 
     return (
         <div>
             <SearchInput
                 placeholder='Search for a country...'
                 value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)} 
+                onChange={e => setSearchQuery(e.target.value)}
             />
             <Filter
                 options={[
+                    { label: 'All', value: 'all' },
                     { label: 'Africa', value: 'africa' },
-                    { label: 'America', value: 'america' },
+                    { label: 'Americas', value: 'americas' },
                     { label: 'Asia', value: 'asia' },
                     { label: 'Europe', value: 'europe' },
                     { label: 'Oceania', value: 'oceania' },
                 ]}
+                value={filterQuery}
+                onChange={e => setFilterQuery(e.target.value)}
             />
             <Suspense>
                 <div className="countriesGrid">
