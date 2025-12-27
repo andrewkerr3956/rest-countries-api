@@ -4,7 +4,7 @@ import SearchInput from "../components/ui/SearchInput/SearchInput";
 import CountryCard from "../components/ui/CountryCard/CountryCard";
 import { Link } from "react-router";
 
-export default function HomePage() {
+const HomePage = () => {
     const initialCountriesData = useRef([]);
 
     const [countriesData, setCountriesData] = useState([]);
@@ -54,4 +54,6 @@ export default function HomePage() {
             </Suspense>
         </div>
     )
-}
+};
+
+export default HomePage;
