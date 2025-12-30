@@ -9,7 +9,7 @@ export default function Header(props: HeaderProps) {
     const { theme, onThemeChange } = props;
 
     return (
-        <header className={styles.mainHeader}>
+        <header className={`${styles.mainHeader} ${theme === 'dark' ? styles.dark : ''}`}>
             <div className={styles.mainHeaderContainer}>
                 <h1>Where in the world?</h1>
                 <div>

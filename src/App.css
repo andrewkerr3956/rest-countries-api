@@ -73,7 +73,6 @@
   grid-template-columns: repeat(4, calc(25% - 1.5%));
   column-gap: 3%;
   row-gap: 100px;
-  background-color: red;
   justify-content: center;
   align-content: center;
 }
