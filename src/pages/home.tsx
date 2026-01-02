@@ -27,7 +27,7 @@ const HomePage = () => {
                 if (searchQuery) {
                     searchFilter = data.filter((d) => d?.name?.common?.includes(searchQuery));
                 }
-                if (filterQuery) {
+                if (filterQuery && filterQuery !== 'all') {
                     regionFilter = data.filter((d) => d?.region?.toLowerCase()?.includes(filterQuery));
                 }
                 const filteredData = data.filter((d) => searchFilter?.includes(d) && regionFilter?.includes(d))
@@ -59,23 +59,26 @@ const HomePage = () => {
 
     return (
         <div>
-            <SearchInput
-                placeholder='Search for a country...'
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-            />
-            <Filter
-                options={[
-                    { label: 'All', value: 'all' },
-                    { label: 'Africa', value: 'africa' },
-                    { label: 'Americas', value: 'americas' },
-                    { label: 'Asia', value: 'asia' },
-                    { label: 'Europe', value: 'europe' },
-                    { label: 'Oceania', value: 'oceania' },
-                ]}
-                value={filterQuery}
-                onChange={e => setFilterQuery(e.target.value)}
-            />
+            <div className="filterSection">
+                <SearchInput
+                    placeholder='Search for a country...'
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                />
+                <Filter
+                    className="countriesFilter"
+                    options={[
+                        { label: 'All', value: 'all' },
+                        { label: 'Africa', value: 'africa' },
+                        { label: 'Americas', value: 'americas' },
+                        { label: 'Asia', value: 'asia' },
+                        { label: 'Europe', value: 'europe' },
+                        { label: 'Oceania', value: 'oceania' },
+                    ]}
+                    value={filterQuery}
+                    onChange={e => setFilterQuery(e.target.value)}
+                />
+            </div>
             <Suspense>
                 <div className="countriesGrid">
                     {countriesData && countriesData?.length > 0 ? countriesData.map((c) => (

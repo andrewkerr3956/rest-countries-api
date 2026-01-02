@@ -15,15 +15,24 @@ export default function CountryCard(props: CountryCardProps) {
     return (
         <figure className={`${className} ${styles.countryCard}`}>
             <picture style={{ display: 'block' }}>
-                <img alt={`${country} Flag`} src={flag} style={{ display: 'block', width: '100%', height: 225 }} />
+                <img alt={`${country} Flag`} src={flag} style={{ display: 'block', width: '100%', height: 175 }} />
             </picture>
-            <figcaption className={styles.countryCardDetails}>
-               <div>{country}</div>
-               <p>
-                    Population: {population} <br />
-                    Region: {region} <br />
-                    Capital: {capital}
-               </p>
+            <figcaption className={styles.countryCardDetails} style={{ height: 175 }}>
+                <div className={styles.countryCardTitle}>{country}</div>
+                <div className={styles.countryCardDetailItemsList}>
+                    <p className={styles.countryCardDetailItem}>
+                        <span className={styles.countryCardDetailItemLabel}>Population: </span> 
+                        {population}
+                    </p>
+                    <p className={styles.countryCardDetailItem}>
+                        <span className={styles.countryCardDetailItemLabel}>Region: </span>
+                        {region}
+                    </p>
+                    <p className={styles.countryCardDetailItem}>
+                        <span className={styles.countryCardDetailItemLabel}>Capital: </span>
+                        {capital}
+                    </p>
+                </div>
             </figcaption>
         </figure>
     )

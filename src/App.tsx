@@ -8,7 +8,7 @@ import Filter from './components/ui/Filter/Filter'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/home'
 import ThemeContext from './contexts/ThemeContext'
-import CountryDetailsPage from './pages/countries/:countryCode'
+import CountryDetailsPage from './pages/countries/[countryCode]'
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -40,6 +40,7 @@ function App() {
           </main>
         </div>
       </ThemeContext.Provider>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
       <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet" />

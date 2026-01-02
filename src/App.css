@@ -67,14 +67,31 @@
   margin: 0 auto;
 }
 
+.filterSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.countriesFilter {
+  height: 100%;
+  background-color: red;
+  width: 12%;
+}
+
 .countriesGrid {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(4, calc(25% - 1.5%));
-  column-gap: 3%;
+  grid-template-columns: repeat(4, 20%);
   row-gap: 100px;
-  justify-content: center;
+  justify-content: space-between;
   align-content: center;
+  overflow: hidden;
+  margin-top: 30px;
 }
 
 .countriesGridItem {

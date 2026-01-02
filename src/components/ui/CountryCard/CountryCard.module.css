@@ -1,4 +1,7 @@
 .countryCard {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     height: 350px;
     width: 100%;
     border: 1px solid transparent;
@@ -7,4 +10,25 @@
 
 .countryCardDetails {
     background-color: hsl(0, 100%, 100%);
+    color: hsl(200, 15%, 8%);
+    padding: 1em 1.5em;
+    text-align: left;
+}
+
+.countryCardTitle {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.countryCardDetailItemsList {
+    margin-top: 1em;
+}
+
+.countryCardDetailItem {
+    font-size: 14px;
+    line-height: 0.9;
+}
+
+.countryCardDetailItemLabel {
+    font-weight: 700;
 }
