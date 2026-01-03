@@ -78,9 +78,24 @@
 }
 
 .countriesFilter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
   height: 100%;
-  background-color: red;
+  background-color: hsl(0, 100%, 100%);
   width: 12%;
+  appearance: none;
+  padding-inline: 1em;
+  box-shadow: 0 0 20px 2.5px rgb(0, 0, 0, 0.1);
+}
+
+.countriesSelect {
+  height: 100%;
+  background-color: inherit;
+  appearance: none;
+  border: unset;
+  flex: 1;
 }
 
 .countriesGrid {

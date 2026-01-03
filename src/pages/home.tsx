@@ -67,6 +67,9 @@ const HomePage = () => {
                 />
                 <Filter
                     className="countriesFilter"
+                    selectProps={{
+                        className: 'countriesSelect'
+                    }}
                     options={[
                         { label: 'All', value: 'all' },
                         { label: 'Africa', value: 'africa' },
