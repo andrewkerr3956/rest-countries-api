@@ -18,6 +18,8 @@ const CountryDetailsPage = () => {
     const navigate = useNavigate();
     const params = useParams();
 
+    const theme = useContext(ThemeContext);
+
     const [data, setData] = useState<any>(null);
 
     useEffect(() => {
@@ -26,7 +28,7 @@ const CountryDetailsPage = () => {
             console.log(getData)
             setData(getData);
         })()
-    }, []);
+    }, [params]);
 
     return (
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', rowGap: 40, marginBlock: '2%' }}>
@@ -48,7 +50,13 @@ const CountryDetailsPage = () => {
                             {/* <p>Currencies: {!!Object.keys(data?.[0]?.currencies) ? Object.keys(data?.[0]?.currencies)?.[0] : null}</p> */}
                             <p className="countryDetailItem"><span className="countryDetailLabel">Languages:</span> {Object.values(data?.[0]?.languages)?.map((v) => <span style={{ textTransform: 'capitalize' }}>{v}</span>)}</p>
                         </div>
-                        <p className="countryDetailItem" style={{ marginTop: '5%' }}><span className="countryDetailLabel">Border Countries:</span> {data?.[0]?.borderCountries ? data?.[0]?.borderCountries?.map((b) => <span>{b?.name?.common}</span>) : <span>N/A</span>}</p>
+                        <p className="countryDetailItem" style={{ marginTop: '5%' }}>
+                            <span className="countryDetailLabel">Border Countries:</span> 
+                            {data?.[0]?.borderCountries ? data?.[0]?.borderCountries?.map((b) => (
+                                <button className={`btn ${theme === 'dark' ? 'dark' : ''}`} onClick={() => navigate(`/countries/${b?.cca3}`)}>
+                                    {b?.name?.common}
+                                </button>
+                            )) : <span>N/A</span>}</p>
                     </div>
                 </div>
             ) : <p>Loading...</p>}

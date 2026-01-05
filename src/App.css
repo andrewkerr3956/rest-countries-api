@@ -26,6 +26,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -136,4 +137,14 @@
 
 .wrapper.dark .countryDetailItem {
   color: #FFFFFF;
+}
+
+.btn {
+  background-color: hsl(0, 100%, 100%);
+  color: hsl(200, 15%, 8%);
+}
+
+.btn.dark {
+  background-color: hsl(209, 23%, 22%);
+  color: hsl(0, 100%, 100%);
 }
