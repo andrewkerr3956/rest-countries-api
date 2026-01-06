@@ -25,7 +25,6 @@ const CountryDetailsPage = () => {
     useEffect(() => {
         (async () => {
             const getData = await handleFetchDetails(params?.countryCode || '');
-            console.log(getData)
             setData(getData);
         })()
     }, [params]);
@@ -48,10 +47,14 @@ const CountryDetailsPage = () => {
                             <p className="countryDetailItem"><span className="countryDetailLabel">Capital:</span> {data?.[0]?.capital}</p>
                             <p className="countryDetailItem"><span className="countryDetailLabel">Top Level Domain:</span> {data?.[0]?.tld?.[0]}</p>
                             {/* <p>Currencies: {!!Object.keys(data?.[0]?.currencies) ? Object.keys(data?.[0]?.currencies)?.[0] : null}</p> */}
-                            <p className="countryDetailItem"><span className="countryDetailLabel">Languages:</span> {Object.values(data?.[0]?.languages)?.map((v) => <span style={{ textTransform: 'capitalize' }}>{v}</span>)}</p>
+                            <p className="countryDetailItem"><span className="countryDetailLabel">Languages:</span> {Object.values(data?.[0]?.languages)?.map((v, idx) => (
+                                <span style={{ textTransform: 'capitalize' }}>
+                                    {v}{Object.values(data?.[0]?.languages)?.length > 1 && idx < Object.values(data?.[0]?.languages)?.length - 1 && ','}&nbsp;
+                                </span>
+                            ))}</p>
                         </div>
                         <p className="countryDetailItem" style={{ marginTop: '5%' }}>
-                            <span className="countryDetailLabel">Border Countries:</span> 
+                            <span className="countryDetailLabel">Border Countries: </span> 
                             {data?.[0]?.borderCountries ? data?.[0]?.borderCountries?.map((b) => (
                                 <button className={`btn ${theme === 'dark' ? 'dark' : ''}`} onClick={() => navigate(`/countries/${b?.cca3}`)}>
                                     {b?.name?.common}
