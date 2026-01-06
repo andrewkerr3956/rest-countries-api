@@ -10,10 +10,13 @@ export default function Header(props: HeaderProps) {
 
     return (
         <header className={`${styles.mainHeader} ${theme === 'dark' ? styles.dark : ''}`}>
-            <div className={styles.mainHeaderContainer}>
+            <div className={`${styles.mainHeaderContainer} container`}>
                 <h1>Where in the world?</h1>
                 <div>
-                    <button style={{ textTransform: 'capitalize' }} onClick={() => onThemeChange(theme === 'dark' ? 'light' : 'dark')}>{theme} Mode</button>
+                    <button style={{ textTransform: 'capitalize' }} onClick={() => onThemeChange(theme === 'dark' ? 'light' : 'dark')}>
+                        <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'}`}></i>
+                        {theme === 'dark' ? 'Light' : 'Dark'} Mode
+                    </button>
                 </div>
             </div>
         </header>

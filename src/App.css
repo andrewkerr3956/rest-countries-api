@@ -68,6 +68,12 @@
   margin: 0 auto;
 }
 
+@media screen and (width < 1690px) {
+  .container {
+    padding-inline: 3.5rem;
+  }
+}
+
 .filterSection {
   display: flex;
   flex-direction: row;
@@ -76,6 +82,7 @@
   height: 50px;
   justify-content: space-between;
   align-items: baseline;
+  margin-top: 30px;
 }
 
 .countriesFilter {
@@ -103,11 +110,11 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(4, 20%);
-  row-gap: 100px;
+  row-gap: 80px;
   justify-content: space-between;
   align-content: center;
   overflow: hidden;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .countriesGridItem {
