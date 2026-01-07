@@ -1,14 +1,17 @@
-import { Suspense, use, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, use, useContext, useEffect, useMemo, useRef, useState } from "react";
 import Filter from "../components/ui/Filter/Filter";
 import SearchInput from "../components/ui/SearchInput/SearchInput";
 import CountryCard from "../components/ui/CountryCard/CountryCard";
 import { Link } from "react-router";
+import ThemeContext from "../contexts/ThemeContext";
 
 async function handleFetchCountries() {
     return fetch('https://restcountries.com/v3.1/all?fields=capital,flag,flags,name,population,region,cca3').then(resp => resp.json());
 };
 
 const HomePage = () => {
+    const theme = useContext(ThemeContext);
+
     const initialLoad = useRef(true);
     const initialCountriesData = useRef<any[]>([]);
 
@@ -66,7 +69,7 @@ const HomePage = () => {
                     onChange={e => setSearchQuery(e.target.value)}
                 />
                 <Filter
-                    className="countriesFilter"
+                    className={`countriesFilter ${theme === 'dark' ? 'dark' : ''}`}
                     selectProps={{
                         className: 'countriesSelect'
                     }}

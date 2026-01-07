@@ -1,11 +1,12 @@
-import { useRef, type HTMLAttributes } from "react";
+import { useContext, useRef, type HTMLAttributes } from "react";
+import ThemeContext from "../../../contexts/ThemeContext";
 
 interface FilterProps extends HTMLAttributes<HTMLDivElement> {
     options: { label: string, value: string }[];
     selectProps: HTMLAttributes<HTMLSelectElement>;
 }
 
-export default function Filter(props: FilterProps) {
+const Filter = (props: FilterProps) => {
     const { options, selectProps, ...restProps } = props;
 
     return (
@@ -18,4 +19,6 @@ export default function Filter(props: FilterProps) {
             <i className="fa-solid fa-chevron-down" style={{ paddingInline: '1em' }}></i>
         </div>
     )
-}
+};
+
+export default Filter;

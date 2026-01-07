@@ -98,6 +98,19 @@
   box-shadow: 0 0 20px 2.5px rgb(0, 0, 0, 0.1);
 }
 
+.countriesFilter * {
+  font-size: 14px;
+}
+
+.countriesFilter.dark {
+  background-color: hsl(209, 23%, 22%);
+  color: hsl(0, 100%, 100%);
+}
+
+.countriesFilter.dark * {
+  color: hsl(0, 100%, 100%);
+}
+
 .countriesSelect {
   height: 100%;
   background-color: inherit;
@@ -115,6 +128,24 @@
   align-content: center;
   overflow: hidden;
   margin-top: 40px;
+}
+
+@media screen and (width < 1024) {
+  .countriesGrid {
+    grid-template-columns: repeat(3, 25%);
+  }
+}
+
+@media screen and (width < 768) {
+  .countriesGrid {
+    grid-template-columns: repeat(2, 40%);
+  }
+}
+
+@media screen and (width < 500) {
+  .countriesGrid {
+    grid-template-columns: 80%;
+  }
 }
 
 .countriesGridItem {
