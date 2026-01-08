@@ -25,3 +25,15 @@
     font-size: 32px;
     letter-spacing: -0.2px;
 }
+
+@media screen and (width < 768px) {
+    .mainHeaderContainer>h1 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (width < 500px) {
+    .mainHeaderContainer>h1 {
+        font-size: 16px;
+    }
+}
